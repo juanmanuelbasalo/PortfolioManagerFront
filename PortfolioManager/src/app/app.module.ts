@@ -13,17 +13,20 @@ import { CoreModule } from './core/core.module';
 import { HomeModule } from './home/home.module';
 import { AccountModule } from './account/account.module';
 import { ShellModule } from './shell/shell.module';
+import { TopSecretModule } from './top-secret/top-secret.module';
+import { IndexComponent } from './top-secret/index/index.component';
 
 @NgModule({
    declarations: [
       AppComponent,
-      AuthCallbackComponent
+      AuthCallbackComponent,
    ],
    imports: [
       BrowserModule,
       HttpClientModule,
       CoreModule,
       HomeModule,
+      TopSecretModule,
       AccountModule,
       AppRoutingModule,
       ShellModule,

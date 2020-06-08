@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+      <div class="col-md-8">
+        <h3>User Data!</h3>
+          <table class="table small">
+              <thead>
+                <tr>
+                  <th scope="col">Type</th>
+                  <th scope="col">Value</th>                
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let claim of claims">
+                  <td>{{claim.Email}}</td>
+                  <td>{{claim.Name}}</td>                   
+                </tr>                 
+              </tbody>
+            </table>            
+      </div>
+  </div>
+  <ngx-spinner></ngx-spinner>  
+</div>
