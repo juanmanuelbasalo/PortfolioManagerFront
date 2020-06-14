@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { finalize } from 'rxjs/operators'
 import { AuthService } from 'src/app/core/authentication/auth.service';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -11,7 +12,7 @@ export class RegisterComponent implements OnInit {
 
   success: boolean;
   error: string;
-  userRegistration: any;
+  userRegistration: any = {};
   submitted: boolean = false;
 
   constructor(private authService: AuthService) {
@@ -23,17 +24,32 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
 
+    this.error = '';
+
+    if (!this.validModel()) {
+      return;
+    }
+
     this.authService.register(this.userRegistration)
       .pipe(finalize(() => {
       }))
       .subscribe(
         result => {
-          if (result) {
-            this.success = true;
-          }
+
+          this.success = true;
+
         },
         error => {
           this.error = error;
         });
+  }
+
+  validModel(): boolean {
+
+    if (this.userRegistration.password !== this.userRegistration.repeatPassword) {
+      this.error = 'Passwords do not match';
+      return false;
+    }
+    return true;
   }
 }

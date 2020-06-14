@@ -18,9 +18,9 @@ export class IndexComponent implements OnInit {
 
   ngOnInit() {
     this.busy = true;
+
     this.topSecretService.fetchTopSecretData(this.authService.authorizationHeaderValue).subscribe(response => {
       this.claims = response;
-      console.log('error ' + response);
     }, error => {
       console.log('error');
     });

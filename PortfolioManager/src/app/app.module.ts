@@ -1,5 +1,6 @@
+import { NgxSpinnerModule } from 'ngx-spinner';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 
@@ -14,7 +15,6 @@ import { HomeModule } from './home/home.module';
 import { AccountModule } from './account/account.module';
 import { ShellModule } from './shell/shell.module';
 import { TopSecretModule } from './top-secret/top-secret.module';
-import { IndexComponent } from './top-secret/index/index.component';
 
 @NgModule({
    declarations: [
@@ -31,6 +31,7 @@ import { IndexComponent } from './top-secret/index/index.component';
       AppRoutingModule,
       ShellModule,
    ],
+   schemas: [CUSTOM_ELEMENTS_SCHEMA],
    providers: [
    ],
    bootstrap: [AppComponent]

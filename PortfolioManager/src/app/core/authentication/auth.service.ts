@@ -15,7 +15,7 @@ export class AuthService {
   authNavStatus$ = this._authNavStatusSource.asObservable();
 
   private manager = new UserManager(getClientSettings());
-  private user: User | null;
+  public user: User | null;
 
   constructor(private http: HttpClient, private router: Router) {
     this.manager.getUser().then(user => {
@@ -29,8 +29,9 @@ export class AuthService {
   }
 
   register(userRegistration: any) {
-    return this.http.post('http://localhost:5000/users/registerUser', userRegistration);
+    return this.http.post('http://localhost:5000/api/users/RegisterUser', userRegistration);
   }
+
   async completeAuthentication() {
     this.user = await this.manager.signinRedirectCallback();
     this._authNavStatusSource.next(this.isAuthenticated());
@@ -59,6 +60,6 @@ export function getClientSettings(): UserManagerSettings {
     client_id: 'angular_spa',
     redirect_uri: 'http://localhost:5002/auth-callback',
     response_type: 'code',
-    scope: 'openid profile roles EntryApi'
+    scope: 'openid profile email roles EntryApi'
   };
 }
