@@ -35,9 +35,8 @@ export class RegisterComponent implements OnInit {
       }))
       .subscribe(
         result => {
-
+          console.log(result);
           this.success = true;
-
         },
         error => {
           this.error = error;

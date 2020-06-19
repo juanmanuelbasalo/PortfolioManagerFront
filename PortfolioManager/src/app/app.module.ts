@@ -1,3 +1,4 @@
+import { ErrorInterceptorProvider } from './shared/error.interceptor';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
@@ -33,6 +34,7 @@ import { TopSecretModule } from './top-secret/top-secret.module';
    ],
    schemas: [CUSTOM_ELEMENTS_SCHEMA],
    providers: [
+      ErrorInterceptorProvider,
    ],
    bootstrap: [AppComponent]
 })
