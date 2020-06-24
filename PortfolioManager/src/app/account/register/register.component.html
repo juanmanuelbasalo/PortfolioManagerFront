@@ -1,48 +1,71 @@
 <div class="row justify-content-center">
-  <div class="col-md-4 text-center">
+  <div class="col-md-6 text-center">
     <form *ngIf="!success" #f="ngForm" (ngSubmit)="onSubmit()">
       <img class="mb-4" src="assets/images/angular_solidBlack.svg" alt="" width="125" height="125">
       <h1 class="h3 mb-3 font-weight-normal">Register</h1>
       <div class="form-group">
-        <div class="input-group">
-          <label for="name" class="sr-only">Name</label>
-          <input type="text" id="name" name="name" [(ngModel)]="userRegistration.name" class="form-control"
-            placeholder="First name" required>
-            <label for="name" class="sr-only">Last Name</label>
-          <input type="text" id="lastName" name="lastName" [(ngModel)]="userRegistration.lastName" class="form-control"
-            placeholder="Last name" required>
+        <div class="example-container">
+          <mat-form-field color="primary" appearance="outline">
+            <mat-label>First Name</mat-label>
+            <input type="text" id="name" name="name" [(ngModel)]="userRegistration.name"
+             matInput placeholder="First Name" required>
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+          </mat-form-field>
+          <mat-form-field color="primary" appearance="outline">
+            <mat-label>Last Name</mat-label>
+            <input type="text" id="lastName" name="lastName" [(ngModel)]="userRegistration.lastName" 
+            matInput placeholder="Last name" required>
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+          </mat-form-field>
         </div>
-        
-        <label for="name" class="sr-only">User Name</label>
-        <input type="text" id="userName" name="userName" [(ngModel)]="userRegistration.userName"
-          class="form-control customPadding" placeholder="User Name" required>
-      </div>
-      <div class="form-group addSeparation">
-        <label for="email" class="sr-only">Email address</label>
-        <input type="email" id="email" name="email" #email="ngModel" [(ngModel)]="userRegistration.email"
-          class="form-control" placeholder="Email address" email required autoFocus>
-        <small [hidden]="email.valid || (email.pristine && !submitted)" class="text-danger">Please enter a valid
-          email</small>
-      </div>
-      <div class="form-group">
-        <label for="password" class="sr-only">Password</label>
-        <input type="password" id="password" name="password" [(ngModel)]="userRegistration.password"
-          class="form-control" placeholder="Password" aria-describedby="passwordHelp" required>
-        <label for="password" class="sr-only">Repeat Password</label>
-        <input type="password" id="repeatPassword" name="repeatPassword" [(ngModel)]="userRegistration.repeatPassword"
-          class="form-control customPadding" placeholder="Repeat Password" required>
 
-        <small id="passwordHelp" class="form-text text-muted">Min. 8 characters with at least one non alphanumeric
-          character</small>
+        <mat-form-field class="input-full-width" color="primary" appearance="outline">
+          <mat-label>User Name</mat-label>
+          <input type="text" id="userName" name="userName" [(ngModel)]="userRegistration.userName" 
+          matInput placeholder="User Name" required>
+          <mat-icon matSuffix>face</mat-icon>
+          <mat-hint>This is how friends will remember you, be creative!</mat-hint>
+        </mat-form-field>
+      </div>
+
+      <div class="form-group addSeparation">
+        <mat-form-field class="input-full-width" color="primary" appearance="outline">
+          <mat-label>Email address</mat-label>
+          <input type="email" id="email" name="email" #email="ngModel" [(ngModel)]="userRegistration.email" 
+          matInput placeholder="Email address" required>
+          <mat-icon matSuffix>alternate_email</mat-icon>
+          <mat-error *ngIf="email.invalid">Please enter a valid email</mat-error>
+        </mat-form-field>        
+      </div>
+
+      <div class="form-group">
+        <mat-form-field class="input-full-width" color="primary" appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput id="password" name="password" [(ngModel)]="userRegistration.password" 
+          [type]="hide ? 'password' : 'text'" required>
+          <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+        <mat-form-field class="input-full-width" color="primary" appearance="outline">
+          <mat-label>Repeat Password</mat-label>
+          <input matInput id="repeatPassword" name="repeatPassword" [(ngModel)]="userRegistration.repeatPassword"
+          [type]="hideRepeat ? 'password' : 'text'" required>
+          <button type="button" mat-icon-button matSuffix (click)="hideRepeat = !hideRepeat" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideRepeat">
+          <mat-icon>{{hideRepeat ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-hint>Min. 8 characters with at least one non alphanumeric
+            character</mat-hint>
+        </mat-form-field>
       </div>
       <div *ngIf="error" class="alert alert-danger mt-3" role="alert">
         <strong>Oops!</strong> {{error}}
       </div>
-      <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!f.form.valid">
+      <button mat-raised-button class="btn btn-lg btn-primary input-full-width custom-padding-button" type="submit" [disabled]="!f.form.valid">
         Join The Community!
       </button>
     </form>
-    <div *ngIf="success" class="alert alert-success" role="alert">
+    <div *ngIf="success" class="alert alert-success margin" role="alert">
       <h4 class="alert-heading">Well done!</h4>
       <p>Your account was created successfully, <a routerLink="/login">Please login</a> to continue.</p>
     </div>

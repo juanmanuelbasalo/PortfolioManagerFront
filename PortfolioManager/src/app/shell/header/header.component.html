@@ -1,4 +1,4 @@
-<mat-toolbar>
+<mat-toolbar class="navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="container d-flex justify-content-between">
     <a routerLink="/" class="navbar-brand d-flex align-items-center">
       <strong>Portfolio Manager</strong>
@@ -9,26 +9,24 @@
     </nav>
     <nav *ngIf="isAuthenticated" class="my-2 my-md-0 mr-md-3">
 
-      <a class="dropdown-toggle mt-5">
-        {{name}} Profile
-      </a>
+      <button class="large" mat-icon-button [matMenuTriggerFor]="menu" aria-label="User Profile">
+        {{name}} <mat-icon>menu</mat-icon>
+      </button>
+      <mat-menu xPosition="before" yPosition="below" #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>perm_identity</mat-icon>
+          <span>Profile</span>
+        </button>
+        <button (click)="signout()" href="javascript:void(0)" mat-menu-item>
+          <mat-icon>login</mat-icon>
+          <span>Signout</span>
+        </button>
+        <button routerLink="/topsecret" mat-menu-item>
+          <mat-icon>verified_user</mat-icon>
+          <span>Top Secret Area</span>
+        </button>
+      </mat-menu>
 
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <a class="dropdown-item" href="#">
-          <i class="fa fa-user">
-          </i>
-          Edit profile
-        </a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" (click)="signout()" href="javascript:void(0)">
-          <i class="fa fa-sign-out">
-          </i>
-          Signout
-        </a>
-      </div>
-
-      <a class="p-2 text-light" routerLink="/topsecret">Top Secret Area</a>
-      <a class="p-2 text-light" (click)="signout()" href="javascript:void(0)">Signout {{name}}</a>
     </nav>
   </div>
 </mat-toolbar>

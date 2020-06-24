@@ -10,10 +10,12 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
 
+  hide = true;
+  hideRepeat = true;
   success: boolean;
   error: string;
   userRegistration: any = {};
-  submitted: boolean = false;
+  submitted = false;
 
   constructor(private authService: AuthService) {
 
@@ -35,7 +37,6 @@ export class RegisterComponent implements OnInit {
       }))
       .subscribe(
         result => {
-          console.log(result);
           this.success = true;
         },
         error => {
