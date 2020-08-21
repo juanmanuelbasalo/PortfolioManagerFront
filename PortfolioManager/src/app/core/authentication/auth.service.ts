@@ -60,6 +60,6 @@ export function getClientSettings(): UserManagerSettings {
     client_id: 'angular_spa',
     redirect_uri: 'http://localhost:5002/auth-callback',
     response_type: 'code',
-    scope: 'openid profile email roles EntryApi'
+    scope: 'openid profile email full roles'
   };
 }
